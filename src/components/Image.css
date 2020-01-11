@@ -1,0 +1,32 @@
+.single-dog .loader {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.single-dog {
+    position: relative;
+}
+
+.unload-image {
+    opacity: 0;
+}
+
+.load-image {
+    animation: load-image 1s ease;
+}
+
+@keyframes load-image {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
