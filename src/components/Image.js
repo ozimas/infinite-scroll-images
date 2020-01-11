@@ -18,10 +18,10 @@ class Image extends React.Component {
   }
   render() {
     return (
-      <div className="single-dog">
+      <div className="single">
         {this.state.loaded ? "" : <Loader />}
         <img
-          className={`single-dog__image rounded ${
+          className={`single__image rounded ${
             this.state.loaded ? "load-image" : "unload-image"
           }`}
           src={this.props.photo.src}
