@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Gallery from "react-photo-gallery";
+import Loader from "./components/Loader";
 import "bootstrap/dist/css/bootstrap.css";
 
 class App extends React.Component {
@@ -42,7 +43,7 @@ class App extends React.Component {
           scrollThreshold="200px"
           next={this.fetchImages}
           hasMore={true}
-          loader={"Loading..."}
+          loader={<Loader />}
         >
           <Gallery photos={this.state.photos} />
         </InfiniteScroll>
