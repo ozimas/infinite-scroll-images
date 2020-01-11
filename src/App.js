@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Gallery from "react-photo-gallery";
 import "bootstrap/dist/css/bootstrap.css";
 
 class App extends React.Component {
@@ -10,6 +11,7 @@ class App extends React.Component {
       photos: [],
       api_url: "/api/shibes?count=16"
     };
+    this.fetchImages = this.fetchImages.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +21,15 @@ class App extends React.Component {
   fetchImages() {
     axios.get(this.state.api_url).then(res => {
       this.setState({
-        photos: this.state.photos.concat(res.data)
+        photos: this.state.photos.concat(
+          res.data.map(item_url => {
+            return {
+              src: item_url,
+              width: 1,
+              height: 1
+            };
+          })
+        )
       });
     });
   }
@@ -34,9 +44,7 @@ class App extends React.Component {
           hasMore={true}
           loader={"Loading..."}
         >
-          {this.state.photos.map(item=>{
-              return <img src={item} />
-          })}
+          <Gallery photos={this.state.photos} />
         </InfiniteScroll>
       </div>
     );
