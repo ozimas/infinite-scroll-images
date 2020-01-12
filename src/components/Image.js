@@ -21,7 +21,7 @@ class Image extends React.Component {
     return (
       <div className="single">
         {this.state.loaded ? "" : <Loader />}
-        <Like url={this.props.photo.src}/>
+        <Like url={this.props.photo.src} unlikeImage={this.props.unlikeImage} isLike={this.props.isLike} />
         <img
           className={`single__image rounded ${
             this.state.loaded ? "load-image" : "unload-image"
