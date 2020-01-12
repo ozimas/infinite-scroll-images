@@ -1,12 +1,13 @@
 import React from "react";
-import "./Image.css";
 import Loader from "./Loader";
+import Like from "./Like";
+import "./Image.css";
 
 class Image extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
     };
 
     this.isLoaded = this.isLoaded.bind(this);
@@ -20,6 +21,7 @@ class Image extends React.Component {
     return (
       <div className="single">
         {this.state.loaded ? "" : <Loader />}
+        <Like url={this.props.photo.src}/>
         <img
           className={`single__image rounded ${
             this.state.loaded ? "load-image" : "unload-image"
