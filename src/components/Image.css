@@ -12,6 +12,11 @@
     overflow: hidden;
 }
 
+.single__image {
+    max-width: 600px;
+    max-height: 600px;
+}
+
 .unload-image {
     opacity: 0;
 }
