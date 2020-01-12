@@ -1,70 +1,28 @@
 import React from "react";
-import axios from "axios";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Gallery from "react-photo-gallery";
-import Loader from "./components/Loader";
-import Image from "./components/Image";
-import "bootstrap/dist/css/bootstrap.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from "./Home";
+import Favorites from "./Favorites"
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      photos: [],
-      api_url: "/api/shibes?count=16"
-    };
-    this.fetchImages = this.fetchImages.bind(this);
-    this.getImage = this.getImage.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchImages();
-  }
-
-  fetchImages() {
-    axios.get(this.state.api_url).then(res => {
-      this.setState({
-        photos: this.state.photos.concat(
-          res.data.map(item_url => {
-            return {
-              src: item_url,
-              width: 1,
-              height: 1
-            };
-          })
-        )
-      });
-    });
-  }
-
-  getImage({ index, left, top, photo }) {
-    return (
-      <Image
-        margin={"2px"}
-        index={index}
-        photo={photo}
-        left={left}
-        top={top}
-        key={"image " + index}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <InfiniteScroll
-          dataLength={this.state.photos.length}
-          scrollThreshold="200px"
-          next={this.fetchImages}
-          hasMore={true}
-          loader={<Loader />}
-        >
-          <Gallery photos={this.state.photos} renderImage={this.getImage} />
-        </InfiniteScroll>
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <nav className="navbar navbar-dark sticky-top bg-dark p-3 mb-4">
+          <div className="container justify-content-center">
+            <Link className="mr-2" to="/"><button type="button" className="btn btn-outline-warning">Home</button></Link>
+            <Link to="/favorites"><button type="button" className="btn btn-outline-warning">Favorites</button></Link>
+          </div>
+        </nav>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/favorites" component={Favorites} />
+        </Switch>
       </div>
-    );
-  }
+    </Router>
+  );
 }
-
-export default App;
