@@ -9,6 +9,7 @@
 
 .single {
     position: relative;
+    overflow: hidden;
 }
 
 .unload-image {
