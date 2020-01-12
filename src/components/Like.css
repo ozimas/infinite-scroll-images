@@ -1,0 +1,68 @@
+.single__like {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s ease opacity;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0;
+    padding: 20px;
+}
+
+.single__like:hover, .single__like.like, .single__like.like .heart {
+    opacity: 1;
+}
+
+.single__like.like {
+    animation: like-it .5s ease;
+    align-items: flex-end;
+}
+
+.heart {
+    background-color: #c0392b;
+    display: inline-block;
+    height: 30px;
+    margin: 0 10px;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg);
+    width: 30px;
+    opacity: .7;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    background-color: #c0392b;
+    border-radius: 50%;
+    height: 30px;
+    position: absolute;
+    width: 30px;
+}
+
+.heart:before {
+    top: -15px;
+    left: 0;
+}
+
+.heart:after {
+    left: 15px;
+    top: 0;
+}
+
+@keyframes like-it {
+    0%, 50%, 100% {
+        top: 0;
+    }
+
+    25% {
+        top: -20px;
+    }
+
+    75% {
+        top: -5px;
+    } 
+}
