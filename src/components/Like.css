@@ -12,8 +12,12 @@
     padding: 20px;
 }
 
-.single__like:hover, .single__like.like, .single__like.like .heart {
+.single__like:hover, .single__like.like, .single__like.like .heart, .favorites .unlike, .favorites .unlike .heart {
     opacity: 1;
+}
+
+.favorites .unlike .heart, .favorites .unlike .heart:before, .favorites .unlike .heart:after {
+    background-color: black;
 }
 
 .single__like.like {
