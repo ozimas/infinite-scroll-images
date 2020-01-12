@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## General info
+This project is simple images generator. Lets you add photos to favorites.
+
+![infinite-scroll-images](./images/infinite-scroll-images.png)
+
+## Technologies
+Project is created with:
+* axios: 0.19.1,
+* bootstrap: 4.4.1,
+* react: 16.12.0,
+* react-dom: 16.12.0,
+* react-infinite-scroll-component: 5.0.4,
+* react-photo-gallery: 8.0.0,
+* react-router-dom: 5.1.2,
+* react-scripts: 3.3.0
+
 ## Available Scripts
 
 In the project directory, you can run:
