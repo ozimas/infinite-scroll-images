@@ -14,13 +14,8 @@ class Like extends React.Component {
         this.getFavoritesFromLocalStorage = this.getFavoritesFromLocalStorage.bind(this);
         this.setFavoritesToLocalStorage = this.setFavoritesToLocalStorage.bind(this);
     }
-    componentDidMount() {
-        if(this.getFavoritesFromLocalStorage === null){
-            localStorage.setItem(
-                'favorites',
-                JSON.stringify([])
-            )
-        }
+    componentDidMount(){
+        if(this.props.isLike) this.setState({ like: true }); 
     }
     setLikeToLocalStorage() {
         this.setFavoritesToLocalStorage(this.state.url);
@@ -30,8 +25,12 @@ class Like extends React.Component {
     }
     setFavoritesToLocalStorage(data){
         let favorites = this.getFavoritesFromLocalStorage();
-        if(!this.state.like) favorites.push(data);
-        else favorites.splice(favorites.indexOf(data), 1);
+        if(!this.state.like) {
+            favorites.unshift(data);
+        } else {
+            favorites.splice(favorites.indexOf(data), 1);
+            this.props.unlikeImage(favorites.indexOf(data));
+        }
         localStorage.setItem(
             'favorites',
             JSON.stringify(favorites)
@@ -49,7 +48,7 @@ class Like extends React.Component {
     render() {
         return (
             <div
-                className={`single__like ${this.state.like ? "like" : ""}`}
+                className={`single__like ${this.state.like ? "like" : "unlike"}`}
                 onClick={this.clickLikeIt}
             >
                 <span className="heart"></span>
